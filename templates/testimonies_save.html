@@ -1,0 +1,40 @@
+
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Save Bookmark{% endblock %}
+{% block head %}Save Bookmark{% endblock %}
+
+<style>
+   {% block style %}
+    .navbar-static-top{
+        margin-bottom:0px !important;
+    }
+    .jumbotron {
+        background-image: url({% static 'img/post-bg.jpg' %});
+
+        color: #FFF;
+        margin-top:0px !important;
+    }
+    {% endblock %}
+</style>
+
+
+{% block content %}
+<div class="jumbotron" >
+        <div class="container" style="">
+            <div class="row">
+                <div class="col-sm-8">
+                <h1>Welcome to Jplace Testimonies</h1>
+                <p>Share your thoughts, find answers and connect with christians all over the world</p>
+                <p>Your testimony can help change lives; help people avoid mistakes.</p>
+                  <p>
+                      <a class="btn btn-lg btn-primary" href="" role="button">Join Us &raquo;</a>
+                  </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% include 'testimonies_save_form.html' %}
+{% endblock %}

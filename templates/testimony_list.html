@@ -1,0 +1,30 @@
+{% if testimony %}
+<ul class="testimony">
+    {% for obj in testimony %}
+    <li> <a href="{{ obj.testimonies.testimony | escape }}" class="title">
+         {{ obj.title | escape  }}</a>        <br />
+         {% if show_edit %}
+            <a href="/save/?testimony={{ obj.testimonies.testimony | urlencode }}" class="edit">[edit]</a>
+        {% endif %}        <br />
+        {% if show_tags %}
+       <i class="fa fa-tags" aria-hidden="true"></i>&nbsp; Tags:
+    {% if obj.tag_set.all %}
+        <ul class="tags">
+            {% for tag in obj.tag_set.all %}
+
+            <li><a href="/tag/{{ tag.name | urlencode  }}/">{{ tag.name | escape }}</a></li>
+    {% endfor %}
+        </ul>
+        {% else %}
+        None.
+        {% endif %}<br />
+        {% endif %}
+        {% if show_user %}
+        Posted by:<a href="/user/{{ obj.user.username }}/" class="username">{{ obj.user.username }}</a>
+        {% endif %}
+     </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No testimony found.</p>
+{% endif %}

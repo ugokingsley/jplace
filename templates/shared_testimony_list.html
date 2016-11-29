@@ -1,0 +1,16 @@
+{% if shared_testimonies %}
+<ul class="bookmarks">
+    {% for obj in shared_testimonies %}
+    <li>
+         <a href="/vote/?id={{ obj.id }}" class="vote"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
+        <a href="{{ obj.testimony.testimonies.testimony }}" class="title">{{ obj.testimony.title|escape }}</a>
+     <br />
+        Posted By:
+        <a href="/user/{{ obj.testimony.user.username }}/" class="username"> {{ obj.testimony.user.username }}</a> |
+        <span class="vote-count">Votes:{{ obj.votes }} |  <a href="/testimonies/{{ obj.id}}/">Comments</a> </span>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No bookmarks found.</p>
+{% endif %}

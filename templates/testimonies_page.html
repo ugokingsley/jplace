@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load comments %}
+{% block title %}Testimonies:{{ shared_testimony.testimonies.title|escape }}{% endblock %}
+{% block head %}<a href="/vote/?id={{ shared_testimony.id }}" class="vote">[+]
+</a><a href="{{ shared_testimonies.testimonies.my_testimony.testimony }}"  class="title">  {{ shared_testimony.testimonies.title|escape }}</a>
+{% endblock %}
+{% block content %}
+Posted By:<a href="/user/{{ shared_testimonies.testimonies.user.username }}/" class="username">{{ shared_testimonies.testimonies.user.username }}</a> |  <span class="vote-count">Votes: {{ shared_testimonies.votes }}</span>
+<h2>Comments</h2>
+{% get_comment_count for jplaceapp.sharedtestimonies    shared_testimony.id as comment_count %}
+{% get_comment_list for jplaceapp.sharedtestimonies    shared_testimony.id as comment_list %}
+{% for comment in comment_list %}
+    <div class="comment">
+        <p><b>{{ comment.user.username }}</b> said:</p>{{ comment.comment|escape|urlizetrunc:40|linebreaks }}
+    </div>
+{% endfor %}
+<p>Number of comments: {{ comment_count }}</p>
+
+{% render_comment_form for jplaceapp.sharedtestimonies shared_testimony.id %}
+{% endblock %}

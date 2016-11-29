@@ -1,0 +1,59 @@
+<!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+            </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li ><a href="{% url 'home' %}"><i class="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp;Home</a></li>
+            <li><a href="{% url 'search_page' %}"><i class="fa fa-search-plus" aria-hidden="true"></i>&nbsp;Search</a></li>
+            <li><a href="/about">About</a></li>
+             <li><a href="{% url 'popular_page' %}"><i class="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp;Popular</a></li>
+
+            <!--<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>-->
+
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {% if request.user.is_authenticated %}
+            <li><a href="{% url 'auth_logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout</a></li>
+            <li class="active"><a href="{% url 'testimonies_save_page' %}"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;submit</a></li>
+            <li><a href="{% url 'friend_invite' %}"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;invite</a></li>
+            {% else %}
+            <!--<li class="active"><a href="{% url 'auth_login' %}">Login<span class="sr-only">(current)</span></a></li>-->
+            <li><a href="{% url 'registration_register' %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Register</a></li>
+            {% endif %}
+            </ul>
+
+          {% if not request.user.is_authenticated and not "/accounts/login" in request.get_full_path %}
+            <form class="navbar-form navbar-right" method="POST" action="{% url 'auth_login' %}">
+              {% csrf_token %}
+              <div class="form-group">
+                <input type="text" class="form-control" name="username" placeholder="Username"/>
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" name="password" placeholder="Password"/>
+              </div>
+              <button type="submit" class="btn btn-default"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Login</button>
+            </form>
+          {% endif %}
+
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>

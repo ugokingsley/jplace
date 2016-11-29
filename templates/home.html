@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block head_title %} welcome | {{block.super}}{% endblock %}
+
+<style>
+   {% block style %}
+    .navbar-static-top{
+        margin-bottom:0px !important;
+    }
+    .jumbotron {
+        background-image: url({% static 'img/post-bg.jpg' %});
+
+        color: #FFF;
+        margin-top:0px !important;
+    }
+    {% endblock %}
+</style>
+
+
+
+
+{% block jumbotron %}
+
+
+
+    <div class="jumbotron" >
+        <div class="container" style="">
+            <div class="row">
+                <div class="col-sm-8">
+                <h1>Welcome to Jplace Testimonies</h1>
+                <p>Share your thoughts, find answers and connect with christians all over the world</p>
+                <p>Your testimony can help change lives; help people avoid mistakes.</p>
+                  <p>
+                      <a class="btn btn-lg btn-primary" href="" role="button">Join Us &raquo;</a>
+                  </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+  <div class="container">
+    {% if user.is_authenticated %}
+    <p>Welcome {{ user.username }}!  Here you can store and share testimonies!</p>
+    {% else %}
+    <p>Welcome anonymous user! You need to <a href="{% url 'auth_login' %}">login</a>before you can store and share testimonies.</p>
+    {% endif %}
+       <h2>Testimonies Shared by Users</h2>
+    {% include 'shared_testimony_list.html' %}
+  </div>
+{% endblock %}
+

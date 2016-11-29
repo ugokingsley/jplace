@@ -1,0 +1,5 @@
+Hi {{ name }},
+{{ sender }} invited you to join Jplace testimomies,    a website where you can post and share your testimonies with friends!
+To accept the invitation, please click the link below:
+{{ link }}
+-- Jplace Testimonies Team

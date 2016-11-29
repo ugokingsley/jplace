@@ -1,0 +1,64 @@
+
+{% extends "base.html" %}
+{% load staticfiles %}
+
+<style>
+   {% block style %}
+    .navbar-static-top{
+        margin-bottom:0px !important;
+    }
+    .jumbotron {
+        background-image: url({% static 'img/post-bg.jpg' %});
+
+        color: #FFF;
+        margin-top:0px !important;
+    }
+    {% endblock %}
+</style>
+
+<body>
+
+
+{% block content %}
+<div class="jumbotron" >
+        <div class="container" style="">
+            <div class="row">
+                <div class="col-sm-8">
+                <h1>Welcome to Jplace Testimonies</h1>
+                <p>Share your thoughts, find answers and connect with christians all over the world</p>
+                <p>Your testimony can help change lives; help people avoid mistakes.</p>
+                  <p>
+                      <a class="btn btn-lg btn-primary" href="" role="button">Join Us &raquo;</a>
+                  </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+<div class="col-sm-8 col-sm-offset-3">
+
+
+    {% if instance.user.name %}
+    <p>Author: {{ instance.user.name}}</p>
+    <div class="fb-like" data-href="{{ request.build_absolute_url }}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+    <hr/>
+    {% endif %}
+    <div class="row">
+    <div class="col-sm-12 col-sm-offset-1">
+        {{instance.title}}<br/>
+    {{instance.testimonies | linebreaks }}
+        <hr/>
+        <br/>
+
+    <div class="fb-comments" data-href="{{ request.build_absolute_url }}" data-numposts="5">
+
+    </div>
+    </div>
+        </div>
+</div>
+
+{% endblock content %}
+

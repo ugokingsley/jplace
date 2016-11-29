@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="col-sm-6 col-sm-offset-3">
+<p> you have successfully {% trans "Logged out" %}</p>
+    <p><a href="{% url 'auth_login' %}">Login</a> </p>
+</div>
+{% endblock %}
